@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Alert,
   Button,
@@ -10,17 +10,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import * as FileSystem from "expo-file-system"; // Thay RNFS bằng Expo FileSystem
-import * as Permissions from "expo-permissions"; // Xin quyền trên iOS
-import * as MediaLibrary from "expo-media-library"; // Lưu vào thư viện ảnh/video
+import * as FileSystem from "expo-file-system"; // change RNFS by Expo FileSystem
+import * as Permissions from "expo-permissions"; // Permissions on iOS
+import * as MediaLibrary from "expo-media-library"; // Storage in media
 import axios from "axios";
-import { Ionicons } from "@expo/vector-icons"
-
+import { Ionicons } from "@expo/vector-icons";
 
 const Index = () => {
-  const [url, setUrl] = useState(""); // State lưu đường link người dùng nhập
-  const [loading, setLoading] = useState(false); // State theo dõi trạng thái đang tải
-  // Hàm xin quyền lưu vào thư viện media
+  const [url, setUrl] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  // Function to request permission to save to media library
   const requestPermission = async () => {
     if (Platform.OS === "ios") {
       const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
@@ -30,7 +29,7 @@ const Index = () => {
       return status === "granted";
     }
   };
-  // Hàm tải video
+
   const downloadVideo = async () => {
     if (!url) {
       Alert.alert("Vui lòng nhập đường link");
@@ -38,8 +37,9 @@ const Index = () => {
     }
     try {
       setLoading(true);
-      const apiUrl = `http://${process.env.EXPO_PUBLIC_SERVER_URL}/download-tiktok?url=${url}`;
-      // const apiUrl = `http://192.168.43.159:3000/download-tiktok?url=${url}`;
+      const apiUrl =
+        `${process.env.EXPO_PUBLIC_SERVER_URL}/download-tiktok?url=${url}`;
+
       const { data } = await axios.get(apiUrl);
       if (!data || !data.videoUrl) {
         setLoading(false);
@@ -142,10 +142,13 @@ const Index = () => {
           gap: 10,
         }}
       >
-        <Text style={{ fontSize: 14, color: "#666" }}>Powerful by Fluentez 🔥</Text>
+        <Text style={{ fontSize: 14, color: "#666" }}>
+          Powerful by Fluentez 🔥
+        </Text>
 
         <TouchableOpacity
-          onPress={() => Linking.openURL("https://github.com/DVHcoding")}
+          onPress={() =>
+            Linking.openURL("https://github.com/DVHcoding")}
         >
           <Ionicons name="logo-github" size={24} color="black" />
         </TouchableOpacity>
