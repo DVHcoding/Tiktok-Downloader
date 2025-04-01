@@ -1,0 +1,26 @@
+{
+  "name": "tiktok-downloader",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "form-data": "^4.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.9",
+    "ytdl-core": "^4.11.5"
+  }
+}
