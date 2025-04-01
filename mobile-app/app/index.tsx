@@ -4,30 +4,25 @@ import {
   Button,
   Clipboard,
   Linking,
-  Platform,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import * as FileSystem from "expo-file-system"; // change RNFS by Expo FileSystem
-import * as Permissions from "expo-permissions"; // Permissions on iOS
-import * as MediaLibrary from "expo-media-library"; // Storage in media
+import * as FileSystem from "expo-file-system";
+import * as MediaLibrary from "expo-media-library";
 import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 
 const Index = () => {
   const [url, setUrl] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  // Function to request permission to save to media library
+
+  // Updated function to request permission to save to media library
   const requestPermission = async () => {
-    if (Platform.OS === "ios") {
-      const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
-      return status === "granted";
-    } else {
-      const { status } = await MediaLibrary.requestPermissionsAsync();
-      return status === "granted";
-    }
+    // Using MediaLibrary for permissions on both iOS and Android
+    const { status } = await MediaLibrary.requestPermissionsAsync();
+    return status === "granted";
   };
 
   const downloadVideo = async () => {
@@ -43,6 +38,7 @@ const Index = () => {
       const { data } = await axios.get(apiUrl);
       if (!data || !data.videoUrl) {
         setLoading(false);
+        Alert.alert("Lỗi", "Không thể lấy được đường dẫn video");
         return;
       }
       // Xin quyền lưu trữ
@@ -66,6 +62,7 @@ const Index = () => {
         await MediaLibrary.createAlbumAsync("TikTok Videos", asset, false);
         Alert.alert("Thành công", "Video đã được lưu vào thư viện!");
       } else {
+        Alert.alert("Lỗi", "Tải video không thành công");
       }
       setLoading(false); // Tắt chế độ tải
       setUrl("");
@@ -143,7 +140,7 @@ const Index = () => {
         }}
       >
         <Text style={{ fontSize: 14, color: "#666" }}>
-          Powerful by Fluentez 🔥
+          Powered by Fluentez 🔥
         </Text>
 
         <TouchableOpacity

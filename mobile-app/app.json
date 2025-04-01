@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tiktok Downloader",
-    "slug": "Tiktok Downloader",
+    "name": "Tiktok-Downloader",
+    "slug": "Tiktok-Downloader",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dvhcoding.TiktokDownloader"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "717f64a9-39ee-4fcc-983e-094c7622880c"
+      }
     }
   }
 }
