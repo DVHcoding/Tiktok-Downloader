@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tiktok-Downloader",
-    "slug": "Tiktok-Downloader",
+    "name": "TikTop",
+    "slug": "TikTop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

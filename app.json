@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "e87a3c51-e7ad-4fcc-ac0c-e9d6d531ff4f"
+      }
+    },
+    "android": {
+      "package": "com.dvhcoding.tiktokdownloader"
+    }
+  }
+}
